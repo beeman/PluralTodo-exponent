@@ -11,13 +11,15 @@ class PluralTodo extends Component {
     super(props, context)
     this.state = {
       todos: [ {
-        task: 'Learn react native',
+        task: 'Learn React Native!',
+      }, {
+        task: 'Learn Redux!',
       } ]
     }
   }
 
   render () {
-    return <TaskList />
+    return <TaskList todos={this.state.todos} />
   }
 
 }

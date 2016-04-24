@@ -1,7 +1,7 @@
 import React from 'react-native'
 
 const {
-  // ListView,
+  ListView,
   Text,
   View,
 } = React
@@ -16,25 +16,27 @@ class TaskList extends React.Component {
   constructor (props, context) {
     super(props, context)
 
-    // const ds = new ListView.dataSource({
-    //   rowHasChanged: (r1, r2) => r1 !== r2,
-    // })
-    //
-    // this.state = {
-    //   dataSource: ds.cloneWithRows(props.todos)
-    // }
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2,
+    })
+
+    this.state = {
+      dataSource: ds.cloneWithRows(props.todos)
+    }
   }
-  //
-  // renderRow(todo) {
-  //   return (
-  //     <Text>{todo.task}</Text>
-  //   )
-  // }
+
+  renderRow(todo) {
+    return (
+      <Text>{todo.task}</Text>
+    )
+  }
 
   render () {
     return (
       <View style={styles.container}>
-        <Text>This is my task list</Text>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow.bind(this)}/>
       </View>
     )
   }
